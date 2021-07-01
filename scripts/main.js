@@ -19,18 +19,26 @@ searchButton.onclick = function () {
 	document.getElementById("found-message").textContent = "";
 	document.getElementById("alert-insert-word-2").textContent = "";
 	if (dictionary.length === 0) {
-		document.getElementById("found-message").textContent = "Sorry, we haven't found \"" +
-		searchText.value + "\" in our Dictionary! :(";
-	} else if (searchText.value !== "") {
-		for (let i = 0; i < dictionary.length; ++i) {
+		if (searchText.value === "") {
+			document.getElementById("alert-insert-word-2").textContent = "Insert a word, please!";
+		} else {
+			document.getElementById("found-message").textContent = "Sorry, we haven't found \"" +
+			searchText.value + "\" in our Dictionary! :(";
+		}
+	}
+	if (searchText.value !== "") {
+		let i = 0;
+		while (i < dictionary.length) {
 			if (dictionary[i] === searchText.value) {
 				document.getElementById("found-message").textContent = "Congratulations! We have found \"" +
 				searchText.value + "\" in our Dictionary! :)";
 				break;
-			} else if (i === dictionary.length - 1) {
-				document.getElementById("found-message").textContent = "Sorry, we haven't found \"" +
-				searchText.value + "\" in our Dictionary! :(";
 			}
+			++i;
+		}
+		if (i === dictionary.length) {
+			document.getElementById("found-message").textContent = "Sorry, we haven't found \"" +
+			searchText.value + "\" in our Dictionary! :(";
 		}
 	} else {
 		document.getElementById("alert-insert-word-2").textContent = "Insert a word, please!";
