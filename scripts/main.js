@@ -28,13 +28,12 @@ searchButton.onclick = function () {
 	}
 	if (searchText.value !== "") {
 		let i = 0;
-		while (i < dictionary.length) {
+		for (i; i < dictionary.length; ++i) {
 			if (dictionary[i] === searchText.value) {
 				document.getElementById("found-message").textContent = "Congratulations! We have found \"" +
 				searchText.value + "\" in our Dictionary! :)";
 				break;
 			}
-			++i;
 		}
 		if (i === dictionary.length) {
 			document.getElementById("found-message").textContent = "Sorry, we haven't found \"" +
